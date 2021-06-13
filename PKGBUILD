@@ -189,7 +189,6 @@ build() {
 --with-tiff \
 --without-udev \
 --with-unwind \
---with-usb \
 --without-v4l2 \
 --without-xattr \
 --with-xml \
@@ -207,6 +206,7 @@ build() {
 --with-xshm \
 --with-xxf86vm \
 --with-x
+#--with-usb \
 
 
   make
