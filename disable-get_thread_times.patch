@@ -1,0 +1,11 @@
+--- a/dlls/ntdll/unix/thread.c
++++ b/dlls/ntdll/unix/thread.c
+@@ -1372,7 +1372,7 @@
+
+ BOOL get_thread_times(int unix_pid, int unix_tid, LARGE_INTEGER *kernel_time, LARGE_INTEGER *user_time)
+ {
+-#ifdef linux
++#ifdef soidfjrneoikjfdllinux
+     unsigned long clocks_per_sec = sysconf( _SC_CLK_TCK );
+     unsigned long usr, sys;
+     const char *pos;
