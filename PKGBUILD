@@ -4,7 +4,7 @@
 # Contributor: Eduardo Romero <eduardo@archlinux.org>
 # Contributor: Giovanni Scafora <giovanni@archlinux.org>
 
-pkgname=wine-staging-osxflags
+pkgname=wine-staging-no_get_thread_times
 pkgver=6.10
 pkgrel=1
 
@@ -132,6 +132,11 @@ prepare() {
 
   sed 's|OpenCL/opencl.h|CL/opencl.h|g' -i $pkgname/configure*
 
+  echo Disabling get_thread_times
+  cd $pkgname
+  patch -Np1 < ../../disable-get_thread_times.patch
+  cd ..
+
   # Get rid of old build dirs
   rm -rf $pkgname-{32,64}-build
   mkdir $pkgname-{32,64}-build
@@ -149,68 +154,7 @@ build() {
     --with-x \
     --with-gstreamer \
     --enable-win64 \
-    --with-xattr \
-    --disable-option-checking \
-    --disable-tests \
-    --without-alsa \
-    --without-capi \
-    --with-cms \
-    --with-coreaudio \
-    --with-cups \
-    --without-curses \
-    --without-dbus \
-    --with-faudio \
-    --without-fontconfig \
-    --with-freetype \
-    --with-gcrypt \
-    --with-gettext \
-    --without-gettextpo \
-    --without-gphoto \
-    --with-gnutls \
-    --without-gsm \
-    --without-gssapi \
-    --with-gstreamer \
-    --without-hal \
-    --without-inotify \
-    --with-jpeg \
-    --without-krb5 \
-    --with-ldap \
-    --with-mingw \
-    --with-mpg123 \
-    --without-netapi \
-    --with-openal \
-    --with-opencl \
-    --with-opengl  \
-    --without-oss \
-    --with-pcap \
-    --with-png \
-    --with-pthread \
-    --without-pulse \
-    --without-quicktime \
-    --without-sane \
-    --with-sdl \
-    --with-tiff \
-    --without-udev \
-    --with-unwind \
-    --with-usb \
-    --without-v4l2 \
-    --without-xattr \
-    --with-xml \
-    --with-xslt \
-    --with-osmesa \
-    --with-xcomposite \
-    --with-xcursor \
-    --with-xfixes \
-    --with-xinerama \
-    --with-xinput \
-    --with-xinput2 \
-    --with-xrandr \
-    --with-xrender \
-    --with-xshape \
-    --with-xshm \
-    --with-xxf86vm \
-    --with-x 
-    #--with-jxrlib \
+    --with-xattr
 
   make
 
